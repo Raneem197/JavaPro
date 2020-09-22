@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +18,10 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class LogIn extends AppCompatActivity {
     TextView notuser;
@@ -24,6 +29,10 @@ public class LogIn extends AppCompatActivity {
     Button login;
     TextView forgotPassword_textButton;
     FirebaseAuth mFirebaseAuth;
+    DatabaseReference mDatabase;
+    StorageReference storageRef;
+    FirebaseDatabase firebaseDatabase;
+    slide ss;
 
 
     @Override
@@ -38,6 +47,10 @@ public class LogIn extends AppCompatActivity {
         login = (Button) findViewById(R.id.button3);
         forgotPassword_textButton = (TextView) findViewById(R.id.texetButton);
         notuser = (TextView) findViewById(R.id.textView6);
+        storageRef= FirebaseStorage.getInstance().getReference();
+        firebaseDatabase = FirebaseDatabase.getInstance();
+
+
 
 
     }
@@ -51,15 +64,29 @@ public class LogIn extends AppCompatActivity {
 
     public void Login(View view){
     String uEmail=email.getText().toString();
-    String uPassword=forgotPassword_textButton.getText().toString();
+    String uPassword=password.getText().toString();
     mFirebaseAuth.signInWithEmailAndPassword(uEmail, uPassword)
     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
     @Override
     public void onComplete(@NonNull Task<AuthResult> task) {
     if (task.isSuccessful()) {
+
+slide s=new slide("title", "fipath");
+
+slide s1=new slide("Introduction", "https://firebasestorage.googleapis.com/v0/b/javapro-6e07e.appspot.com/o/upload%2F%20Introduction.pdf?alt=media&token=2f5ed82b-a2db-4c64-9c7d-b155792d0112");
+        slide s2=new slide("JavaBasics(I)", "https://firebasestorage.googleapis.com/v0/b/javapro-6e07e.appspot.com/o/upload%2FJavaBasics%20(I).pdf?alt=media&token=95d8e19d-14cb-408d-b271-940e6c87c306");
+
+firebaseDatabase.getReference("javaoneslide").push().setValue(s1);
+        firebaseDatabase.getReference("javaoneslide").push().setValue(s2);
+
+
+
+
     // Sign in success, update UI with the signed-in user's information
     Log.d("my_stor", "createUserWithEmail:success");
      FirebaseUser user = mFirebaseAuth.getCurrentUser();
+        Intent intent = new Intent(getApplicationContext(), javaone.class);
+        startActivity(intent);
       Toast.makeText(getApplicationContext(),"You've logged in successfully",Toast.LENGTH_SHORT).show();
     }
     else {
