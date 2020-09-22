@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#f4f3f3">
+
+    <ImageView
+        android:id="@+id/obj"
+        android:layout_width="match_parent"
+        android:layout_height="519px"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/obj1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/book"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/study" />
+
+        <Button
+            android:id="@+id/slide"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@drawable/google" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/practical"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginRight="30dp"
+            android:background="@drawable/examination" />
+
+        <Button
+            android:id="@+id/theor"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:background="@drawable/quiz" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/video"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/play" />
+    <Button
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="115dp"
+        android:layout_marginRight="115dp"
+        android:background="#00828f"
+        android:text="Back"
+        android:textSize="20dp"
+        android:textAllCaps="false"
+        android:textColor="#f4f3f3" />
+
+
+</LinearLayout>

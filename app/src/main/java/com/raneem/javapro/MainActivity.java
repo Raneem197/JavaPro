@@ -3,6 +3,7 @@ package com.raneem.javapro;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,15 +18,19 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class MainActivity extends AppCompatActivity {
-    EditText username, email1, pass;
+    EditText username1, email1, pass;
     TextView login_here;
     Button regester;
 
+
+
     private FirebaseAuth mFirebaseAuth;
-    FirebaseDatabase firebaseDatabase;
+FirebaseDatabase firebaseDatabase;
+    DatabaseReference mDatabase;
 
    
 
@@ -34,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        username = (EditText) findViewById(R.id.editUsername);
+        username1 = (EditText) findViewById(R.id.editUsername);
         email1 = (EditText) findViewById(R.id.editEmail2);
         pass = (EditText) findViewById(R.id.editPassword);
         regester = (Button) findViewById(R.id.button);
@@ -42,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
 
          mFirebaseAuth=FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
+
+
+
+
+
+
 
 
     }
@@ -56,17 +67,34 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-         String email_ll=email1.getText().toString();
-        String password=pass.getText().toString();
+       final String username=username1.getText().toString();
+       final   String email_ll=email1.getText().toString();
+      final   String password=pass.getText().toString();
+
 
         mFirebaseAuth.createUserWithEmailAndPassword(email_ll, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
+
                             // Sign in success, update UI with the signed-in user's information
                             Log.d("my_stor", "createUserWithEmail:success");
+                            String userID=task.getResult().getUser().getUid();
+                            User userr=new User(username);
+
+                            DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+                           // DatabaseReference uidRef = rootRef.child("users").child(userID);
+                           // uidRef.setValue(userr);
+
+                         //   mDatabase=FirebaseDatabase.getInstance().getReference("userss").child(userID);
+                         //   mDatabase.setValue(userr);
                             FirebaseUser user = mFirebaseAuth.getCurrentUser();
+
+
+                            firebaseDatabase.getReference("users").child(userID).setValue(userr);
+                          //  firebaseDatabase.getReference("listofslidesjavaone").child(userID).setValue("hi");
+
                             Intent log=new Intent(getApplicationContext(),LogIn.class);
                             startActivity(log);
 
