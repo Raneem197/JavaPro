@@ -6,7 +6,7 @@ public class slide {
 String title;
     String fipath;
 
-
+    public slide(){}
 
     public slide(String title, String fipath) {
         this.title = title;

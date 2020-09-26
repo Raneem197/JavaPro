@@ -10,17 +10,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
+
 
 public class javaone extends AppCompatActivity implements View.OnClickListener {
     Button slide,back;
 
-     DatabaseReference mDatabase;
-    StorageReference storageRef;
-    FirebaseDatabase firebaseDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,8 +27,7 @@ public class javaone extends AppCompatActivity implements View.OnClickListener {
         back = (Button) findViewById(R.id.back);
         back.setOnClickListener(this);
 
-        storageRef= FirebaseStorage.getInstance().getReference();
-        mDatabase=FirebaseDatabase.getInstance().getReference("my files");
+
 
 
     }
