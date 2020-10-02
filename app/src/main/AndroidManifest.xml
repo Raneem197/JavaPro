@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".uplaod_slidesjavaone"></activity>
+        <activity android:name=".courses"></activity>
         <activity android:name=".javaone" />
         <activity android:name=".listofslides" />
         <activity android:name=".ForgotPassword" />

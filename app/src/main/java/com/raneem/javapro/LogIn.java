@@ -53,6 +53,7 @@ public class LogIn extends AppCompatActivity {
 
 
 
+
     }
 
     public void RegisterPage(View view){
@@ -70,14 +71,16 @@ public class LogIn extends AppCompatActivity {
     @Override
     public void onComplete(@NonNull Task<AuthResult> task) {
     if (task.isSuccessful()) {
+        Intent intent = new Intent(getApplicationContext(), courses.class);
+        startActivity(intent);
+       /* slide s=new slide("title", "fipath");
 
-slide s=new slide("title", "fipath");
+        slide s1=new slide("Introduction", "https://firebasestorage.googleapis.com/v0/b/javapro-6e07e.appspot.com/o/upload%2F%20Introduction.pdf?alt=media&token=d6ddf8f4-04a1-4a9d-ad2e-ddafa3f0c3a5");
+        slide s2=new slide("JavaBasics(I)", "https://firebasestorage.googleapis.com/v0/b/javapro-6e07e.appspot.com/o/upload%2FJavaBasics%20(I).pdf?alt=media&token=55a8db1e-3452-4698-a187-e509b1aea5fe");
 
-slide s1=new slide("Introduction", "https://firebasestorage.googleapis.com/v0/b/javapro-6e07e.appspot.com/o/upload%2F%20Introduction.pdf?alt=media&token=2f5ed82b-a2db-4c64-9c7d-b155792d0112");
-        slide s2=new slide("JavaBasics(I)", "https://firebasestorage.googleapis.com/v0/b/javapro-6e07e.appspot.com/o/upload%2FJavaBasics%20(I).pdf?alt=media&token=95d8e19d-14cb-408d-b271-940e6c87c306");
+        firebaseDatabase.getReference("javaoneslide").push().setValue(s1);
+        *///firebaseDatabase.getReference("javaoneslide").push().setValue(s2);
 
-firebaseDatabase.getReference("javaoneslide").push().setValue(s1);
-        firebaseDatabase.getReference("javaoneslide").push().setValue(s2);
 
 
 
@@ -85,8 +88,7 @@ firebaseDatabase.getReference("javaoneslide").push().setValue(s1);
     // Sign in success, update UI with the signed-in user's information
     Log.d("my_stor", "createUserWithEmail:success");
      FirebaseUser user = mFirebaseAuth.getCurrentUser();
-        Intent intent = new Intent(getApplicationContext(), javaone.class);
-        startActivity(intent);
+
       Toast.makeText(getApplicationContext(),"You've logged in successfully",Toast.LENGTH_SHORT).show();
     }
     else {
